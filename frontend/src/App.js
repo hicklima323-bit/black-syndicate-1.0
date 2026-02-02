@@ -1,44 +1,17 @@
-/* ============================================
-   BLACK SYNDICATE - MAIN APP
-   Complete dark theme digital store
-   ============================================ */
-
-import "@/App.css";
-import { Header } from "./components/Header";
-import { HeroSection } from "./components/HeroSection";
-import { FeaturedSection } from "./components/FeaturedSection";
-import { CategoryGrid } from "./components/CategoryGrid";
-import { AboutSection } from "./components/AboutSection";
-import { ContactSection } from "./components/ContactSection";
-import { Footer } from "./components/Footer";
+import HeroParticles from "./components/HeroParticles";
+import "./index.css";
 
 function App() {
   return (
-    <div className="min-h-screen bg-black text-white noise-overlay">
-      {/* Header - Fixed navigation */}
-      <Header />
-      
-      {/* Main content */}
-      <main>
-        {/* Hero Section - Full screen intro */}
-        <HeroSection />
-        
-        {/* Featured Section - Highlighted items carousel */}
-        <FeaturedSection />
-        
-        {/* Category Grid - Main categories with electric hover */}
-        <CategoryGrid />
-        
-        {/* About Section - Brand story */}
-        <AboutSection />
-        
-        {/* Contact Section - Community/WhatsApp CTA */}
-        <ContactSection />
-      </main>
-      
-      {/* Footer */}
-      <Footer />
-    </div>
+    <>
+      <HeroParticles />
+      <section style={{ textAlign: "center", padding: "120px 20px" }}>
+        <h1>BLACK SYNDICATE</h1>
+        <p style={{ color: "#9a9a9a", marginTop: 10 }}>
+          Power • Strategy • Domination
+        </p>
+      </section>
+    </>
   );
 }
 
