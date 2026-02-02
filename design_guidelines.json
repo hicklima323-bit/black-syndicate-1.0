@@ -1,0 +1,193 @@
+{
+  "design_system": {
+    "identity": {
+      "name": "BLACK SYNDICATE",
+      "archetype": "ELECTRIC & NEON",
+      "vibe": "Futuristic, Mysterious, Powerful, Underground, High-Voltage",
+      "principles": [
+        "Darkness is the canvas, Light is the weapon.",
+        "Motion must feel dangerous (sparks, glitches, shocks).",
+        "No flat surfaces; everything has depth, grain, or glow.",
+        "Asymmetry creates tension."
+      ]
+    },
+    "typography": {
+      "headings": {
+        "family": "Unbounded, sans-serif",
+        "weights": ["700", "900"],
+        "usage": "Hero titles, Section headers, Impact text",
+        "letter_spacing": "tracking-tighter"
+      },
+      "body": {
+        "family": "Rajdhani, sans-serif",
+        "weights": ["400", "500", "600"],
+        "usage": "Paragraphs, UI elements, metadata",
+        "letter_spacing": "tracking-wide"
+      },
+      "mono": {
+        "family": "JetBrains Mono, monospace",
+        "usage": "Code snippets, decorative data points, coordinates"
+      }
+    },
+    "colors": {
+      "palette": {
+        "background": "#030014",
+        "foreground": "#E2E8F0",
+        "primary": "#A855F7",
+        "primary_glow": "#D8B4FE",
+        "secondary": "#06B6D4",
+        "secondary_glow": "#67E8F9",
+        "accent": "#FF003C",
+        "surface": "#0F0B1E",
+        "surface_highlight": "#1A1625"
+      },
+      "gradients": {
+        "hero": "radial-gradient(circle at center, #1e1b4b 0%, #030014 100%)",
+        "neon_purple": "linear-gradient(135deg, #A855F7 0%, #7C3AED 100%)",
+        "neon_blue": "linear-gradient(135deg, #22D3EE 0%, #0EA5E9 100%)"
+      }
+    },
+    "visual_enhancers": {
+      "textures": {
+        "noise": "url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iNDAwIj48ZmlsdGVyIGlkPSJub2lzZSI+PGZlVHVyYnVsZW5jZSB0eXBlPSJmcmFjdGFsTm9pc2UiIGJhc2VGcmVxdWVuY3k9IjAuNjUiIG51bU9jdGF2ZXM9IjMiIHN0aXRjaFRpbGVzPSJzdGl0Y2giLz48L2ZpbHRlcj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWx0ZXI9InVybCgjbm9pc2UpIiBvcGFjaXR5PSIwLjA1Ii8+PC9zdmc+')",
+        "grid": "linear-gradient(to right, #1f2937 1px, transparent 1px), linear-gradient(to bottom, #1f2937 1px, transparent 1px)"
+      },
+      "effects": {
+        "glass_dirty": "backdrop-blur-xl bg-black/40 border border-white/10 shadow-2xl",
+        "neon_border": "border border-purple-500/50 shadow-[0_0_15px_rgba(168,85,247,0.3)]",
+        "text_glow": "drop-shadow-[0_0_10px_rgba(168,85,247,0.8)]"
+      }
+    },
+    "motion": {
+      "hover_shock": {
+        "css_class": "hover-shock",
+        "description": "Rapid x/y translation (shake) + brightness flash + border glow expansion",
+        "transition": "all 0.1s cubic-bezier(0.4, 0, 0.2, 1)"
+      },
+      "entrance": {
+        "stagger": 0.1,
+        "type": "spring",
+        "damping": 20,
+        "stiffness": 100
+      }
+    }
+  },
+  "layout_strategy": {
+    "grid_system": "Bento Grid (Asymmetrical)",
+    "container_width": "max-w-7xl",
+    "spacing": {
+      "section_gap": "py-24 md:py-32",
+      "element_gap": "gap-6 md:gap-8"
+    },
+    "z_index_layers": {
+      "background_particles": 0,
+      "grid_texture": 1,
+      "content": 10,
+      "overlays": 50,
+      "header": 100
+    }
+  },
+  "components": {
+    "HeroSection": {
+      "path": "/app/frontend/src/components/HeroSection.js",
+      "type": "Custom",
+      "specs": {
+        "height": "min-h-screen",
+        "alignment": "Center (Impact)",
+        "elements": [
+          "Glitch Text Logo (BLACK SYNDICATE)",
+          "Particle Background (tsparticles)",
+          "CTA Button with 'Electric' hover state"
+        ]
+      }
+    },
+    "CategoryGrid": {
+      "path": "/app/frontend/src/components/CategoryGrid.js",
+      "type": "Shadcn + Custom",
+      "specs": {
+        "layout": "Grid cols-1 md:cols-3 lg:cols-4",
+        "card_style": "Glassmorphism + Neon Border on Hover",
+        "interaction": "Cards scale up slightly + border turns electric blue/purple"
+      }
+    },
+    "AboutSection": {
+      "path": "/app/frontend/src/components/AboutSection.js",
+      "type": "Custom",
+      "specs": {
+        "layout": "Asymmetrical (Text Left, Image Right with Glitch Effect)",
+        "typography": "Large justified text for manifesto"
+      }
+    },
+    "Footer": {
+      "path": "/app/frontend/src/components/Footer.js",
+      "type": "Custom",
+      "specs": {
+        "style": "Minimal, massive typography for brand name",
+        "border": "Top border with glowing gradient line"
+      }
+    }
+  },
+  "assets": {
+    "images": {
+      "hero_bg": {
+        "url": "https://images.unsplash.com/photo-1594886801340-88d2d9c028e2?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NzR8MHwxfHNlYXJjaHwxfHxjeWJlcnB1bmslMjBuZW9uJTIwY2l0eSUyMGRhcmt8ZW58MHx8fHwxNzcwMDQyMDc4fDA&ixlib=rb-4.1.0&q=85",
+        "alt": "Cyberpunk City Night",
+        "usage": "Hero Background with heavy overlay"
+      },
+      "abstract_neon": {
+        "url": "https://images.unsplash.com/photo-1693925540769-c9f179a2849b?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1Nzh8MHwxfHNlYXJjaHwxfHxhYnN0cmFjdCUyMG5lb24lMjBlbGVjdHJpYyUyMHNwYXJrcyUyMHB1cnBsZSUyMGJsdWV8ZW58MHx8fHwxNzcwMDQyMDg3fDA&ixlib=rb-4.1.0&q=85",
+        "alt": "Neon Abstract Lines",
+        "usage": "Section Dividers / Card Backgrounds"
+      },
+      "mysterious_figure": {
+        "url": "https://images.unsplash.com/photo-1760753145427-c327d09ace00?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2MzR8MHwxfHNlYXJjaHwxfHxoYWNrZXIlMjBob29kaWUlMjBkYXJrJTIwbXlzdGVyaW91cyUyMGRpZ2l0YWx8ZW58MHx8fHwxNzcwMDQyMDgyfDA&ixlib=rb-4.1.0&q=85",
+        "alt": "Mysterious Digital Figure",
+        "usage": "About Section / Community Card"
+      }
+    },
+    "icons": {
+      "library": "lucide-react",
+      "style": "Stroke width 1.5px, sharp edges if possible"
+    }
+  },
+  "libraries": {
+    "required": [
+      "framer-motion",
+      "clsx",
+      "tailwind-merge",
+      "react-tsparticles",
+      "tsparticles-slim"
+    ],
+    "installation_command": "npm install framer-motion clsx tailwind-merge react-tsparticles tsparticles-slim"
+  },
+  "instructions_to_main_agent": [
+    "1. SETUP: Install required libraries immediately.",
+    "2. FONTS: Add 'Unbounded' and 'Rajdhani' from Google Fonts to public/index.html.",
+    "3. THEME: Force dark mode in tailwind.config.js or index.css. The site should NEVER be light.",
+    "4. GLOBAL CSS: Add the 'noise' texture as a fixed overlay on the body with pointer-events-none.",
+    "5. ANIMATION: Create a custom 'shock' keyframe in tailwind.config.js that translates x/y randomly by 2px.",
+    "6. COMPONENTS: Use Shadcn for interactive elements (Dialogs, Forms) but heavily style them to match the Neon/Dark aesthetic. Remove all default white backgrounds.",
+    "7. PARTICLES: Configure tsparticles to use 'links' or 'star' preset with purple/blue colors.",
+    "8. ACCESSIBILITY: Ensure neon text has sufficient contrast against the black background. Use text-shadow to enhance legibility."
+  ],
+  "UNIVERSAL_GUIDELINES_FOR_MAIN_AGENT": [
+    "Dark colors look good when used independently without gradients. DO NOT use dark colors as gradients",
+    "Don't make generic centered layouts, simplistic gradients, and uniform styling.",
+    "Create depth through layered design elements with z-index hierarchy",
+    "Use glass-morphism effects with backdrop filters (12-24px blur)",
+    "You MUST NOT apply universal transition. Eg: transition: all. This results in breaking transforms. Always add transitions for specific interactive elements like button, input excluding transforms",
+    "You MUST NOT center align the app container, ie do not add .App { text-align: center; } in the css file. This disrupts the human natural reading flow of text",
+    "Always use modern button styles like pill-shaped, or sharp button with interaction animations & color relevant to the app style",
+    "NEVER: use AI assistant Emoji characters like 🤖🧠💭💡🔮🎯📚🎭🎬🎪🎉🎊🎁🎀🎂🍰🎈🎨🎰💰💵💳🏦💎🪙💸🤑📊📈📉💹🔢🏆🥇 etc for icons.",
+    "Every interaction needs micro-animations - hover states, transitions, parallax effects, and entrance animations. Static = dead.",
+    "Use 2-3x more spacing than feels comfortable. Cramped designs look cheap.",
+    "Subtle grain textures, noise overlays, custom cursors, selection states, and loading animations: separates good from extraordinary.",
+    "Main agent relies on these image URLs. Missing categories (especially sponsor logos) = main agent will use placeholder text which is FORBIDDEN",
+    "Prioritize using pre-existing components from src/components/ui when applicable",
+    "Create new components that match the style and conventions of existing components when needed",
+    "Examine existing components to understand the project's component patterns before creating new ones",
+    "Components MUST use named exports (export const ComponentName = ...)",
+    "Pages MUST use default exports (export default function PageName() {...})",
+    "Use sonner for toasts. Sonner component are located in /app/src/components/ui/sonner.tsx"
+  ]
+}
