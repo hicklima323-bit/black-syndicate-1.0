@@ -18,81 +18,6 @@ import {
   Shield
 } from 'lucide-react';
 
-/* ============================================
-   EDITABLE CONFIGURATION
-   Change categories, icons, and colors here
-   ============================================ */
-const CATEGORIES = [
-  {
-    id: 'assinaturas',
-    title: 'ASSINATURAS',
-    description: 'Streaming, música e mais',
-    icon: Crown,
-    color: '#a855f7', // Purple
-    items: 12,
-  },
-  {
-    id: 'ferramentas',
-    title: 'FERRAMENTAS',
-    description: 'Softwares e utilitários',
-    icon: Wrench,
-    color: '#06b6d4', // Cyan
-    items: 8,
-  },
-  {
-    id: 'downloads',
-    title: 'DOWNLOADS',
-    description: 'Arquivos e recursos',
-    icon: Download,
-    color: '#ec4899', // Pink
-    items: 24,
-  },
-  {
-    id: 'apps',
-    title: 'APK PREMIUM',
-    description: 'Apps exclusivos Android',
-    icon: Smartphone,
-    color: '#22c55e', // Green
-    items: 15,
-  },
-  {
-    id: 'cortes',
-    title: 'CORTES VIRAIS',
-    description: 'Conteúdo para redes',
-    icon: Scissors,
-    color: '#f97316', // Orange
-    items: 30,
-  },
-  {
-    id: 'metodos',
-    title: 'MÉTODOS',
-    description: 'Guias e tutoriais',
-    icon: FileText,
-    color: '#eab308', // Yellow
-    items: 18,
-  },
-  {
-    id: 'premium',
-    title: 'PREMIUM',
-    description: 'Conteúdo VIP exclusivo',
-    icon: Star,
-    color: '#f59e0b', // Amber
-    items: 6,
-  },
-  {
-    id: 'outros',
-    title: 'OUTROS',
-    description: 'Diversos e especiais',
-    icon: Shield,
-    color: '#8b5cf6', // Violet
-    items: 20,
-  },
-];
-
-/* ============================================
-   ELECTRIC SPARK EFFECT COMPONENT
-   Canvas-based electric effect on hover
-   ============================================ */
 const ElectricSpark = ({ isActive, color }) => {
   const canvasRef = useRef(null);
 
@@ -108,7 +33,6 @@ const ElectricSpark = ({ isActive, color }) => {
     let animationId;
     const sparks = [];
 
-    // Create sparks
     const createSpark = () => {
       const edge = Math.floor(Math.random() * 4);
       let x, y;
@@ -130,14 +54,11 @@ const ElectricSpark = ({ isActive, color }) => {
       });
     };
 
-    // Animation loop
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      // Add new sparks
       if (Math.random() > 0.7) createSpark();
 
-      // Update and draw sparks
       for (let i = sparks.length - 1; i >= 0; i--) {
         const spark = sparks[i];
         spark.x += spark.vx;
@@ -151,10 +72,9 @@ const ElectricSpark = ({ isActive, color }) => {
 
         ctx.beginPath();
         ctx.arc(spark.x, spark.y, spark.size, 0, Math.PI * 2);
-        ctx.fillStyle = `${color}${Math.floor(spark.life * 255).toString(16).padStart(2, '0')}`;
+        const alpha = Math.floor(spark.life * 255).toString(16).padStart(2, '0');
+        ctx.fillStyle = color + alpha;
         ctx.fill();
-
-        // Draw glow
         ctx.shadowBlur = 10;
         ctx.shadowColor = color;
       }
@@ -178,12 +98,9 @@ const ElectricSpark = ({ isActive, color }) => {
   );
 };
 
-/* ============================================
-   CATEGORY CARD COMPONENT
-   ============================================ */
 const CategoryCard = ({ category, index }) => {
   const [isHovered, setIsHovered] = useState(false);
-  const Icon = category.icon;
+  const IconComponent = category.icon;
 
   return (
     <motion.div
@@ -201,14 +118,9 @@ const CategoryCard = ({ category, index }) => {
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.98 }}
         data-testid={`category-card-${category.id}`}
-        style={{
-          '--card-color': category.color,
-        }}
       >
-        {/* Electric spark effect */}
         <ElectricSpark isActive={isHovered} color={category.color} />
 
-        {/* Glow effect on hover */}
         <div 
           className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
           style={{
@@ -216,7 +128,6 @@ const CategoryCard = ({ category, index }) => {
           }}
         />
 
-        {/* Icon */}
         <div 
           className="relative z-20 mb-4 inline-flex p-3 rounded-xl transition-all duration-300"
           style={{
@@ -224,13 +135,12 @@ const CategoryCard = ({ category, index }) => {
             border: `1px solid ${category.color}30`,
           }}
         >
-          <Icon 
+          <IconComponent 
             className="w-8 h-8 md:w-10 md:h-10 transition-all duration-300 group-hover:scale-110"
             style={{ color: category.color }}
           />
         </div>
 
-        {/* Content */}
         <div className="relative z-20">
           <h3 className="font-heading font-bold text-lg md:text-xl text-white mb-2 group-hover:neon-text transition-all duration-300">
             {category.title}
@@ -239,7 +149,6 @@ const CategoryCard = ({ category, index }) => {
             {category.description}
           </p>
           
-          {/* Item count */}
           <div className="flex items-center gap-2 text-sm">
             <Sparkles className="w-4 h-4" style={{ color: category.color }} />
             <span className="text-gray-500">
@@ -248,7 +157,6 @@ const CategoryCard = ({ category, index }) => {
           </div>
         </div>
 
-        {/* Corner accent */}
         <div 
           className="absolute top-0 right-0 w-20 h-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
           style={{
@@ -256,7 +164,6 @@ const CategoryCard = ({ category, index }) => {
           }}
         />
 
-        {/* Bottom border glow */}
         <div 
           className="absolute bottom-0 left-0 right-0 h-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300"
           style={{
@@ -268,21 +175,27 @@ const CategoryCard = ({ category, index }) => {
   );
 };
 
-/* ============================================
-   MAIN CATEGORY GRID COMPONENT
-   ============================================ */
 export const CategoryGrid = () => {
+  const categories = [
+    { id: 'assinaturas', title: 'ASSINATURAS', description: 'Streaming, música e mais', icon: Crown, color: '#a855f7', items: 12 },
+    { id: 'ferramentas', title: 'FERRAMENTAS', description: 'Softwares e utilitários', icon: Wrench, color: '#06b6d4', items: 8 },
+    { id: 'downloads', title: 'DOWNLOADS', description: 'Arquivos e recursos', icon: Download, color: '#ec4899', items: 24 },
+    { id: 'apps', title: 'APK PREMIUM', description: 'Apps exclusivos Android', icon: Smartphone, color: '#22c55e', items: 15 },
+    { id: 'cortes', title: 'CORTES VIRAIS', description: 'Conteúdo para redes', icon: Scissors, color: '#f97316', items: 30 },
+    { id: 'metodos', title: 'MÉTODOS', description: 'Guias e tutoriais', icon: FileText, color: '#eab308', items: 18 },
+    { id: 'premium', title: 'PREMIUM', description: 'Conteúdo VIP exclusivo', icon: Star, color: '#f59e0b', items: 6 },
+    { id: 'outros', title: 'OUTROS', description: 'Diversos e especiais', icon: Shield, color: '#8b5cf6', items: 20 },
+  ];
+
   return (
     <section 
       id="categorias" 
       className="py-20 md:py-32 px-4 relative"
       data-testid="category-section"
     >
-      {/* Background glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-purple-500/5 rounded-full blur-[150px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto">
-        {/* Section header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -310,9 +223,8 @@ export const CategoryGrid = () => {
           </p>
         </motion.div>
 
-        {/* Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
-          {CATEGORIES.map((category, index) => (
+          {categories.map((category, index) => (
             <CategoryCard key={category.id} category={category} index={index} />
           ))}
         </div>

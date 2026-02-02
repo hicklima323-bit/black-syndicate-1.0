@@ -9,28 +9,11 @@ import Particles from '@tsparticles/react';
 import { loadSlim } from '@tsparticles/slim';
 import { Zap, ChevronDown } from 'lucide-react';
 
-/* ============================================
-   EDITABLE CONFIGURATION
-   Change these values to customize the hero
-   ============================================ */
-const CONFIG = {
-  title: 'BLACK SYNDICATE',
-  subtitle: 'Power • Strategy • Domination',
-  description: 'Acesse conteúdos exclusivos, ferramentas premium e recursos ilimitados.',
-  ctaText: 'EXPLORAR AGORA',
-  ctaLink: '#categorias',
-  // Particle settings - adjust for performance
-  particleCount: 50,
-  particleSpeed: 1,
-};
-
 export const HeroSection = () => {
-  // Initialize particles
   const particlesInit = useCallback(async (engine) => {
     await loadSlim(engine);
   }, []);
 
-  // Particle configuration - memoized for performance
   const particlesOptions = useMemo(() => ({
     fullScreen: false,
     background: {
@@ -52,7 +35,7 @@ export const HeroSection = () => {
       },
       move: {
         enable: true,
-        speed: CONFIG.particleSpeed,
+        speed: 1,
         direction: 'none',
         random: true,
         straight: false,
@@ -65,7 +48,7 @@ export const HeroSection = () => {
           enable: true,
           area: 800,
         },
-        value: CONFIG.particleCount,
+        value: 50,
       },
       opacity: {
         value: { min: 0.1, max: 0.5 },
@@ -90,10 +73,8 @@ export const HeroSection = () => {
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
       data-testid="hero-section"
     >
-      {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-purple-900/20 via-black to-black" />
       
-      {/* Animated grid background */}
       <div 
         className="absolute inset-0 opacity-20"
         style={{
@@ -105,7 +86,6 @@ export const HeroSection = () => {
         }}
       />
 
-      {/* Particles */}
       <Particles
         id="hero-particles"
         init={particlesInit}
@@ -113,12 +93,9 @@ export const HeroSection = () => {
         className="absolute inset-0 z-0"
       />
 
-      {/* Radial glow effect */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-purple-500/10 rounded-full blur-[120px]" />
 
-      {/* Content */}
       <div className="relative z-10 text-center px-4 max-w-5xl mx-auto">
-        {/* Animated icon */}
         <motion.div
           initial={{ scale: 0, rotate: -180 }}
           animate={{ scale: 1, rotate: 0 }}
@@ -130,7 +107,6 @@ export const HeroSection = () => {
           </div>
         </motion.div>
 
-        {/* Title with glitch effect */}
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -139,29 +115,12 @@ export const HeroSection = () => {
           data-testid="hero-title"
         >
           <span className="relative inline-block">
-            {/* Main text */}
             <span className="relative z-10 bg-gradient-to-r from-white via-purple-200 to-white bg-clip-text text-transparent">
-              {CONFIG.title}
-            </span>
-            {/* Glitch layers */}
-            <span 
-              className="absolute inset-0 text-cyan-400 opacity-0 hover:opacity-70 transition-opacity"
-              style={{ clipPath: 'inset(40% 0 30% 0)', transform: 'translate(-2px, 2px)' }}
-              aria-hidden="true"
-            >
-              {CONFIG.title}
-            </span>
-            <span 
-              className="absolute inset-0 text-purple-500 opacity-0 hover:opacity-70 transition-opacity"
-              style={{ clipPath: 'inset(60% 0 10% 0)', transform: 'translate(2px, -2px)' }}
-              aria-hidden="true"
-            >
-              {CONFIG.title}
+              BLACK SYNDICATE
             </span>
           </span>
         </motion.h1>
 
-        {/* Subtitle */}
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -169,10 +128,9 @@ export const HeroSection = () => {
           className="font-heading text-lg sm:text-xl md:text-2xl text-purple-400 tracking-[0.3em] mb-6"
           data-testid="hero-subtitle"
         >
-          {CONFIG.subtitle}
+          Power • Strategy • Domination
         </motion.p>
 
-        {/* Description */}
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -180,28 +138,26 @@ export const HeroSection = () => {
           className="text-base md:text-lg text-gray-400 max-w-2xl mx-auto mb-10"
           data-testid="hero-description"
         >
-          {CONFIG.description}
+          Acesse conteúdos exclusivos, ferramentas premium e recursos ilimitados.
         </motion.p>
 
-        {/* CTA Button */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1 }}
         >
           <motion.a
-            href={CONFIG.ctaLink}
+            href="#categorias"
             className="btn-neon inline-flex items-center gap-2"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.98 }}
             data-testid="hero-cta"
           >
             <Zap className="w-5 h-5" />
-            {CONFIG.ctaText}
+            EXPLORAR AGORA
           </motion.a>
         </motion.div>
 
-        {/* Scroll indicator */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -217,7 +173,6 @@ export const HeroSection = () => {
         </motion.div>
       </div>
 
-      {/* Corner decorations */}
       <div className="absolute top-20 left-4 w-32 h-32 border-l-2 border-t-2 border-purple-500/20 rounded-tl-3xl" />
       <div className="absolute top-20 right-4 w-32 h-32 border-r-2 border-t-2 border-cyan-500/20 rounded-tr-3xl" />
       <div className="absolute bottom-20 left-4 w-32 h-32 border-l-2 border-b-2 border-cyan-500/20 rounded-bl-3xl" />
