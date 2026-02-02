@@ -2,114 +2,446 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ============================================
+   BLACK SYNDICATE - CUSTOM CSS VARIABLES
+   Easily editable colors and effects
+   ============================================ */
+
+:root {
+  /* Main Colors - Edit these to change the theme */
+  --bs-bg-primary: #000000;
+  --bs-bg-secondary: #0a0a0a;
+  --bs-bg-card: #111111;
+  --bs-bg-hover: #1a1a1a;
+  
+  /* Neon Colors - Change these for different neon effects */
+  --bs-neon-purple: #a855f7;
+  --bs-neon-blue: #06b6d4;
+  --bs-neon-pink: #ec4899;
+  --bs-neon-red: #ef4444;
+  
+  /* Text Colors */
+  --bs-text-primary: #ffffff;
+  --bs-text-secondary: #a1a1aa;
+  --bs-text-muted: #71717a;
+  
+  /* Electric Effect Settings */
+  --bs-electric-intensity: 1;
+  --bs-electric-speed: 0.15s;
+  --bs-glow-spread: 20px;
+  
+  /* Shadcn overrides for dark theme */
+  --background: 0 0% 0%;
+  --foreground: 0 0% 100%;
+  --card: 0 0% 7%;
+  --card-foreground: 0 0% 100%;
+  --popover: 0 0% 5%;
+  --popover-foreground: 0 0% 100%;
+  --primary: 270 91% 65%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 0 0% 10%;
+  --secondary-foreground: 0 0% 100%;
+  --muted: 0 0% 15%;
+  --muted-foreground: 0 0% 65%;
+  --accent: 270 91% 65%;
+  --accent-foreground: 0 0% 100%;
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 0 0% 20%;
+  --input: 0 0% 15%;
+  --ring: 270 91% 65%;
+  --radius: 0.75rem;
+}
+
+/* ============================================
+   BASE STYLES
+   ============================================ */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-    margin: 0;
-    font-family:
-        -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-        "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-        sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+  font-family: 'Rajdhani', sans-serif;
+  background-color: var(--bs-bg-primary);
+  color: var(--bs-text-primary);
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-    font-family:
-        source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bs-bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--bs-neon-purple);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--bs-neon-blue);
+}
+
+/* ============================================
+   TYPOGRAPHY
+   ============================================ */
+
+.font-heading {
+  font-family: 'Unbounded', sans-serif;
+}
+
+.font-body {
+  font-family: 'Rajdhani', sans-serif;
+}
+
+.font-mono {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* ============================================
+   ELECTRIC SHOCK ANIMATION
+   Editable intensity via CSS variable
+   ============================================ */
+
+@keyframes electricShock {
+  0%, 100% { 
+    transform: translate(0, 0);
+    filter: brightness(1);
+  }
+  10% { 
+    transform: translate(calc(-2px * var(--bs-electric-intensity)), calc(1px * var(--bs-electric-intensity)));
+    filter: brightness(1.3);
+  }
+  20% { 
+    transform: translate(calc(2px * var(--bs-electric-intensity)), calc(-1px * var(--bs-electric-intensity)));
+    filter: brightness(1.1);
+  }
+  30% { 
+    transform: translate(calc(-1px * var(--bs-electric-intensity)), calc(2px * var(--bs-electric-intensity)));
+    filter: brightness(1.4);
+  }
+  40% { 
+    transform: translate(calc(1px * var(--bs-electric-intensity)), calc(-2px * var(--bs-electric-intensity)));
+    filter: brightness(1.2);
+  }
+  50% { 
+    transform: translate(calc(-2px * var(--bs-electric-intensity)), 0);
+    filter: brightness(1.5);
+  }
+  60% { 
+    transform: translate(calc(2px * var(--bs-electric-intensity)), calc(1px * var(--bs-electric-intensity)));
+    filter: brightness(1.1);
+  }
+  70% { 
+    transform: translate(0, calc(-1px * var(--bs-electric-intensity)));
+    filter: brightness(1.3);
+  }
+  80% { 
+    transform: translate(calc(-1px * var(--bs-electric-intensity)), calc(1px * var(--bs-electric-intensity)));
+    filter: brightness(1.2);
+  }
+  90% { 
+    transform: translate(calc(1px * var(--bs-electric-intensity)), 0);
+    filter: brightness(1.4);
+  }
+}
+
+@keyframes electricGlow {
+  0%, 100% {
+    box-shadow: 
+      0 0 5px var(--bs-neon-purple),
+      0 0 10px var(--bs-neon-purple),
+      0 0 15px var(--bs-neon-purple);
+  }
+  25% {
+    box-shadow: 
+      0 0 10px var(--bs-neon-blue),
+      0 0 20px var(--bs-neon-blue),
+      0 0 30px var(--bs-neon-blue);
+  }
+  50% {
+    box-shadow: 
+      0 0 15px var(--bs-neon-purple),
+      0 0 25px var(--bs-neon-purple),
+      0 0 35px var(--bs-neon-purple);
+  }
+  75% {
+    box-shadow: 
+      0 0 10px var(--bs-neon-blue),
+      0 0 20px var(--bs-neon-blue),
+      0 0 25px var(--bs-neon-blue);
+  }
+}
+
+@keyframes sparkle {
+  0%, 100% { opacity: 0; transform: scale(0) rotate(0deg); }
+  50% { opacity: 1; transform: scale(1) rotate(180deg); }
+}
+
+@keyframes neonPulse {
+  0%, 100% { 
+    text-shadow: 
+      0 0 5px var(--bs-neon-purple),
+      0 0 10px var(--bs-neon-purple),
+      0 0 20px var(--bs-neon-purple);
+  }
+  50% { 
+    text-shadow: 
+      0 0 10px var(--bs-neon-blue),
+      0 0 20px var(--bs-neon-blue),
+      0 0 40px var(--bs-neon-blue);
+  }
+}
+
+@keyframes borderFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes glitch {
+  0% {
+    clip-path: inset(40% 0 61% 0);
+    transform: translate(-2px, 2px);
+  }
+  20% {
+    clip-path: inset(92% 0 1% 0);
+    transform: translate(2px, -2px);
+  }
+  40% {
+    clip-path: inset(43% 0 1% 0);
+    transform: translate(-2px, 2px);
+  }
+  60% {
+    clip-path: inset(25% 0 58% 0);
+    transform: translate(2px, -2px);
+  }
+  80% {
+    clip-path: inset(54% 0 7% 0);
+    transform: translate(-2px, 2px);
+  }
+  100% {
+    clip-path: inset(58% 0 43% 0);
+    transform: translate(2px, -2px);
+  }
+}
+
+/* ============================================
+   UTILITY CLASSES
+   ============================================ */
+
+.electric-hover {
+  position: relative;
+  transition: transform var(--bs-electric-speed) ease-out;
+}
+
+.electric-hover:hover {
+  animation: electricShock 0.3s ease-in-out;
+}
+
+.neon-glow-purple {
+  box-shadow: 
+    0 0 5px var(--bs-neon-purple),
+    0 0 10px var(--bs-neon-purple),
+    0 0 20px rgba(168, 85, 247, 0.5);
+}
+
+.neon-glow-blue {
+  box-shadow: 
+    0 0 5px var(--bs-neon-blue),
+    0 0 10px var(--bs-neon-blue),
+    0 0 20px rgba(6, 182, 212, 0.5);
+}
+
+.neon-text {
+  text-shadow: 
+    0 0 5px var(--bs-neon-purple),
+    0 0 10px var(--bs-neon-purple),
+    0 0 20px var(--bs-neon-purple);
+}
+
+.neon-text-blue {
+  text-shadow: 
+    0 0 5px var(--bs-neon-blue),
+    0 0 10px var(--bs-neon-blue),
+    0 0 20px var(--bs-neon-blue);
+}
+
+.gradient-border {
+  background: linear-gradient(90deg, var(--bs-neon-purple), var(--bs-neon-blue), var(--bs-neon-purple));
+  background-size: 200% auto;
+  animation: borderFlow 3s linear infinite;
+}
+
+.glass-effect {
+  background: rgba(17, 17, 17, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Noise texture overlay */
+.noise-overlay::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* ============================================
+   COMPONENT STYLES
+   ============================================ */
+
+/* Card Electric Effect */
+.card-electric {
+  position: relative;
+  background: var(--bs-bg-card);
+  border: 1px solid rgba(168, 85, 247, 0.2);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: border-color 0.3s ease, transform 0.2s ease;
+}
+
+.card-electric::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, transparent 40%, rgba(168, 85, 247, 0.1) 50%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.card-electric:hover {
+  border-color: var(--bs-neon-purple);
+  transform: translateY(-4px);
+  animation: electricShock 0.3s ease-in-out, electricGlow 0.5s ease-in-out;
+}
+
+.card-electric:hover::before {
+  opacity: 1;
+}
+
+/* Button Styles */
+.btn-neon {
+  position: relative;
+  padding: 12px 32px;
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--bs-text-primary);
+  background: transparent;
+  border: 2px solid var(--bs-neon-purple);
+  border-radius: 4px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn-neon::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(168, 85, 247, 0.4), transparent);
+  transition: left 0.5s ease;
+}
+
+.btn-neon:hover {
+  background: var(--bs-neon-purple);
+  box-shadow: 
+    0 0 10px var(--bs-neon-purple),
+    0 0 20px var(--bs-neon-purple),
+    0 0 40px var(--bs-neon-purple);
+  animation: electricShock 0.2s ease-in-out;
+}
+
+.btn-neon:hover::before {
+  left: 100%;
+}
+
+/* Search Input */
+.search-input {
+  background: var(--bs-bg-secondary);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 10px 16px;
+  color: var(--bs-text-primary);
+  font-family: 'Rajdhani', sans-serif;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: var(--bs-neon-purple);
+  box-shadow: 0 0 10px rgba(168, 85, 247, 0.3);
+}
+
+.search-input::placeholder {
+  color: var(--bs-text-muted);
+}
+
+/* ============================================
+   RESPONSIVE STYLES
+   ============================================ */
+
+@media (max-width: 768px) {
+  .font-heading {
+    font-size: 0.9em;
+  }
+  
+  :root {
+    --bs-electric-intensity: 0.5;
+    --bs-glow-spread: 10px;
+  }
+}
+
+/* ============================================
+   TAILWIND BASE OVERRIDES
+   ============================================ */
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-black text-white;
+  }
 }
 
 @layer base {
-    :root {
-        --background: 0 0% 100%;
-        --foreground: 0 0% 3.9%;
-        --card: 0 0% 100%;
-        --card-foreground: 0 0% 3.9%;
-        --popover: 0 0% 100%;
-        --popover-foreground: 0 0% 3.9%;
-        --primary: 0 0% 9%;
-        --primary-foreground: 0 0% 98%;
-        --secondary: 0 0% 96.1%;
-        --secondary-foreground: 0 0% 9%;
-        --muted: 0 0% 96.1%;
-        --muted-foreground: 0 0% 45.1%;
-        --accent: 0 0% 96.1%;
-        --accent-foreground: 0 0% 9%;
-        --destructive: 0 84.2% 60.2%;
-        --destructive-foreground: 0 0% 98%;
-        --border: 0 0% 89.8%;
-        --input: 0 0% 89.8%;
-        --ring: 0 0% 3.9%;
-        --chart-1: 12 76% 61%;
-        --chart-2: 173 58% 39%;
-        --chart-3: 197 37% 24%;
-        --chart-4: 43 74% 66%;
-        --chart-5: 27 87% 67%;
-        --radius: 0.5rem;
-    }
-    .dark {
-        --background: 0 0% 3.9%;
-        --foreground: 0 0% 98%;
-        --card: 0 0% 3.9%;
-        --card-foreground: 0 0% 98%;
-        --popover: 0 0% 3.9%;
-        --popover-foreground: 0 0% 98%;
-        --primary: 0 0% 98%;
-        --primary-foreground: 0 0% 9%;
-        --secondary: 0 0% 14.9%;
-        --secondary-foreground: 0 0% 98%;
-        --muted: 0 0% 14.9%;
-        --muted-foreground: 0 0% 63.9%;
-        --accent: 0 0% 14.9%;
-        --accent-foreground: 0 0% 98%;
-        --destructive: 0 62.8% 30.6%;
-        --destructive-foreground: 0 0% 98%;
-        --border: 0 0% 14.9%;
-        --input: 0 0% 14.9%;
-        --ring: 0 0% 83.1%;
-        --chart-1: 220 70% 50%;
-        --chart-2: 160 60% 45%;
-        --chart-3: 30 80% 55%;
-        --chart-4: 280 65% 60%;
-        --chart-5: 340 75% 55%;
-    }
-}
-
-@layer base {
-    * {
-        @apply border-border;
-    }
-    body {
-        @apply bg-background text-foreground;
-    }
-}
-
-@layer base {
-    [data-debug-wrapper="true"] {
-        display: contents !important;
-    }
-
-    [data-debug-wrapper="true"] > * {
-        margin-left: inherit;
-        margin-right: inherit;
-        margin-top: inherit;
-        margin-bottom: inherit;
-        padding-left: inherit;
-        padding-right: inherit;
-        padding-top: inherit;
-        padding-bottom: inherit;
-        column-gap: inherit;
-        row-gap: inherit;
-        gap: inherit;
-        border-left-width: inherit;
-        border-right-width: inherit;
-        border-top-width: inherit;
-        border-bottom-width: inherit;
-        border-left-style: inherit;
-        border-right-style: inherit;
-        border-top-style: inherit;
-        border-bottom-style: inherit;
-        border-left-color: inherit;
-        border-right-color: inherit;
-        border-top-color: inherit;
-        border-bottom-color: inherit;
-    }
+  [data-debug-wrapper="true"] {
+    display: contents !important;
+  }
 }
